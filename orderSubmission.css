@@ -1,0 +1,117 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for the order tracking content */
+.order-tracking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for progress steps and progress bar */
+.progress-and-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative; /* Add this line */
+}
+
+/* Progress bar container */
+.progress-bar {
+    width: 5px;
+    height: 225px;
+    background-color: #ccc;
+    position: relative; /* Add this line */
+    z-index: 1; /* Add this line */
+}
+
+/* Progress bar fill */
+.progress-bar-fill {
+    position: absolute;
+    width: 100%;
+    background-color: #007bff; /* Change color to highlight */
+    top: 0;
+    transition: height 1s ease-in-out;
+    z-index: 0; /* Add this line */
+}
+
+/* Progress bubbles */
+.progress-bubbles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 0;
+    left: -5px; /* Adjust position for bubbles */
+    z-index: 2;
+    transform: translateX(0); /* Move bubbles to the right */
+}
+
+
+.bubble {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+/* Order status steps */
+.progress-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #999;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Order details container */
+.order-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Price container */
+.price-container {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Price details */
+.price-container p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.price-container span {
+    font-weight: bold;
+    color: #333;
+    margin-left: 5px;
+}
+
+/* Highlight progress bar and bubbles */
+.progress-bar.active {
+    background-color: #007bff;
+}
+.progress-bubbles li.bubble.active {
+    background-color: #007bff;
+}

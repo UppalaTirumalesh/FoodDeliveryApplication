@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="billing.css">
+  <title>Billing Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <div class="position-bar">
+    <h3 class="position">Billing Section</h3>
+    <h3 class="position">Payment Details</h3>
+    <h3 class="position">Placed Order Details</h3>
+    <h3 class="position">Order Summary</h3>
+  </div>
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+
+  <button class="go-back-button" id="goBackButton">Go to Cart Page</button>
+
+  <div class="container">
+    <div class="billing-container" id="billingContainer">
+      <h1 class="billing-heading" id="billingPageHeading">Billing Page</h1>
+      <h3>Billing Address</h3>
+      <form>
+        <label for="fname"><i class="fa fa-user"></i> First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Enter First Name" required>
+        <label for="lname"><i class="fa fa-user"></i> Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Enter Last Name" required>
+        <label for="mobile"><i class="fa fa-phone"></i> Mobile Number</label>
+        <input type="text" id="mobile" name="mobile" placeholder="Enter Mobile Number" required>
+        <label for="alternatemobile"><i class="fa fa-phone"></i> Alternate Mobile No.</label>
+        <input type="text" id="alternatemobile" name="alternatemobile" placeholder="Enter Alternate Mobile Number"
+          required>
+        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+        <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" required>
+        <label for="pincode"><i class="fa fa-map-marker"></i> Pincode</label>
+        <input type="text" id="pincode" name="pincode" placeholder="10001" required>
+
+        <label for="states"><i class="fa fa-map"></i> State:</label>
+        <select name="states" id="states" required>
+          <option value="" selected>Select a State</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Karnataka">Karnataka</option>
+        </select>
+
+        <label for="districts"><i class="fa fa-map-marker"></i> District:</label>
+        <select name="districts" id="districts" required>
+          <option value="" selected>Select a District</option>
+        </select><br><br>
+        <button type="button" id="confirm1">CONFIRM</button>
+      </form>
+    </div>
+
+
+    <div class="payment-details" id="paymentContainer" style="display: none;">
+      <h1 style="text-align: center;">Payment Page</h1><br><br>
+      <h3>Payment Details</h3><br>
+      <h4>Choose a payment option:</h4><br>
+      <form>
+        <input type="radio" id="googlepay" name="payment" value="googlepay" required>
+        <label for="googlepay">GooglePay</label><br><br>
+        <input type="radio" id="phonepay" name="payment" value="phonepay" required>
+        <label for="phonepay">PhonePay</label><br><br>
+        <input type="radio" id="paytm" name="payment" value="paytm" required>
+        <label for="paytm">Paytm</label><br><br>
+        <input type="radio" id="cashOnDelivery" name="payment" value="cashondelivery" required>
+        <label for="cashOnDelivery">Cash on Delivery</label><br><br>
+        <input type="radio" id="creditCardAndDebitCard" name="payment" value="creditCardAndDebitCard" required>
+        <label for="creditCardAndDebitCard">CreditCardAndDebitCard</label><br><br>
+        <button type="button" id="backButton1" class="backButton">BackButton</button>
+        <button type="button" id="confirm2" style="display: none">Proceed To Pay</button>
+
+        <div class="payment-container" id="paymentCards" style="display: none">
+          <h4>Accepted Cards</h4><br>
+          <div class="icon-container">
+            <i class="fa fa-cc-visa" style="color:navy;"></i>
+            <i class="fa fa-cc-amex" style="color:blue;"></i>
+            <i class="fa fa-cc-mastercard" style="color:red;"></i>
+            <i class="fa fa-cc-discover" style="color:orange;"></i>
+          </div>
+          <div id="creditCardContainer">
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname" placeholder="John More Doe" required>
+            <label for="ccnum">Credit card number</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required>
+            <label for="expmonth">Expiry Month and Year</label>
+            <input type="month" id="expmonth" name="expmonth" placeholder="September 2018" required>
+            <label for="cvv">CVV</label>
+            <input type="number" id="cvv" name="cvv" placeholder="352" required><br>
+            <button type="button" class="backButton">BackButton</button>
+            <button type="button" id="confirm3">Proceed To Pay</button>
+            <br><br>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="orderConfirmationPage" id="confirmationContainer" style="display: none;">
+      <div id="orderConfirmationPageContainer">
+        <h1 style="text-align: center;">Order Confirmation Page</h1><br><br><br><br>
+        <label>
+          <input type="checkbox" id="checkboxProgressBar" name="sameadr">&nbsp;
+          Shipping address will be same as Billing address, your order details will be taken as confirmed.
+        </label><br><br>
+        <p>Click on Place order to place your order.</p>
+        <button type="button" id="backButton3">BackButton</button>
+        <button id="placeOrderButton" style="display: none">Place Order</button>
+        <br><br>
+      </div>
+    </div>
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h4>Shipping details will share as soon as possible.</h4><br><br>
+        <input type="radio" id="yesValue" name="selection" value="yesValue" required>
+        <label for="yesValue">yes</label><br><br>
+        <input type="radio" id="noValue" name="selection" value="noValue" required>
+        <label for="noValue">no</label><br><br>
+        <button id="goToShoppingButton">Go to Shopping</button>
+      </div>
+    </div>
+
+    <div class="modal2" id="modal2">
+      <div class="modal-content2">
+        <span class="close2">&times;</span>
+        <h3>Congratulations! Your order has been placed successfully.</h3>
+        <button id="goToShoppingButton2">Go to Shopping</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="./billing.js"></script>
+</body>
+
+</html>

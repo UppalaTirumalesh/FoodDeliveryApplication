@@ -1,0 +1,264 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+body {
+    margin: 0 auto;
+}
+
+hr {
+    margin: 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rest-image {
+    width: 70px;
+    height: 70px;
+}
+
+.restaurent-title {
+    color: rgb(22, 12, 161);
+    font-size: x-large;
+    margin: 25px 180px 0 0;
+}
+
+.list {
+    list-style-type: none;
+    display: flex;
+    margin: 30px 100px 0 0;
+    height: 30px;
+    cursor: pointer;
+}
+
+.list li:hover { 
+    border: 1px solid rgb(62, 62, 165);
+    background-color: rgb(141, 141, 221);
+}
+
+.list li {
+    border: 1px solid black;
+    text-align: center;
+    width: 100px;
+    line-height: 25px;
+}
+
+.contact {
+    width: 130px;
+    height: 40px;
+    background-color: rgb(4, 87, 45);
+    color: white;
+    border-radius: 5px;
+    margin: 20px 45px 0 0;
+    cursor: pointer;
+}
+
+.text {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.head1 {
+    margin: 50px 0 40px 0;
+}
+
+.searchBar {
+    width: 400px;
+    height: 30px;
+    display: flex;
+    border-radius: 15px 0 0 15px;
+    padding: 20px;
+    font-size: 17px;
+}
+
+.searchButton { 
+    width: 100px;
+    border-radius: 0 15px 15px 0;
+    font-size: 17px;
+    border-left: none;
+    cursor: pointer;
+}
+
+.list-items {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+.services {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0;
+}
+
+.service-items {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.input-field {
+    display: flex;
+    justify-content: center;
+}
+
+.input-fields {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 80px;
+}
+
+.fields {
+    width: 250px;
+    height: 40px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button.fields, .view, .order {
+background-color: black;
+color: white;
+border-radius: 5px;
+box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.head2 {
+    margin: 60px 0 50px 0;
+}
+
+.head3 {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    width: 1076px;
+    margin: 0 auto;
+}
+
+.box {
+    /* border: 1px solid black; */
+    width: 250px;
+    height: 300px;
+
+}
+
+.orderbutton {
+    margin: 20px 0 0 50px;
+    padding: 7px 20px;
+    border: 1px solid rgb(236, 103, 170);
+    border-radius: 15px;
+}
+
+.orderbutton:hover {
+    background-color: rgb(219, 11, 115);
+    color: antiquewhite;
+    cursor: pointer;
+}
+
+.icons,
+.heading {
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+
+.price {
+    text-align: center;
+    margin: 0;
+}
+
+.view-button {
+    text-align: center;
+    margin: 0 0 60px 0;
+}
+
+.view {
+    width: 120px;
+    height: 40px;
+}
+
+.view:hover {
+    border: 1px solid rgb(62, 62, 165);
+    background-color: rgb(141, 141, 221);
+    cursor: pointer;
+}
+
+img {
+    width: 250px;
+    height: 130px;
+}
+
+.offer {
+    display: flex;
+    padding: 20px 40px;
+}
+
+.offer-image img {
+    width: 900px;
+    height: 300px;
+    padding-left: 80px;
+}
+
+.offerscontainer button {
+    width: 120px;
+    height: 40px;
+}
+
+.order:hover {
+    border: 1px solid red;
+    background-color: red;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.experience {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 40px;
+}
+
+.experienceimages {
+    text-align: center;
+}
+
+.list-unstyled {
+    list-style-type: none;
+}
+
+.list-unstyled li a {
+    text-decoration: none;
+    line-height: 30px;
+}
+
+.footermaincontainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 80px;
+}
+
+.footer-items {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-items li a {
+    padding: 0 20px 0 0;
+}
+
+.text-start {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background-color: rgb(219, 219, 219);
+}
+
+.footer-icons i {
+    padding: 0 10px 0 0;
+}
