@@ -57,7 +57,7 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #4CAF50;
+  background-color: #007bff;
 }
 
 .container {
@@ -136,7 +136,7 @@ input, select {
 #paymentContainer button,
 .orderConfirmationPage button,
 #confirm3 {
-  background-color: #4caf50;
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   font-size: 14px;
@@ -199,7 +199,7 @@ input, select {
 }
 
 #goToShoppingButton, #goToShoppingButton2 {
-  background-color: #4caf50;
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   font-size: 14px;
@@ -210,7 +210,8 @@ input, select {
 }
 
 #goToShoppingButton:hover, #goToShoppingButton2:hover {
-  background-color: #1df528;
+  border: 1px solid rgb(62, 62, 165);
+  background-color: rgb(141, 141, 221);
 }
 
 @media (max-width: 480px) {

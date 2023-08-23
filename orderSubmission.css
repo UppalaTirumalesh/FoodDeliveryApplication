@@ -1,4 +1,3 @@
-/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
@@ -17,12 +16,20 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+}
+
 /* Container for progress steps and progress bar */
 .progress-and-steps {
     display: flex;
     align-items: flex-start;
     gap: 20px;
-    position: relative; /* Add this line */
+    position: relative; 
 }
 
 /* Progress bar container */
@@ -30,21 +37,19 @@
     width: 5px;
     height: 225px;
     background-color: #ccc;
-    position: relative; /* Add this line */
-    z-index: 1; /* Add this line */
+    position: relative; 
+    z-index: 1; 
 }
 
-/* Progress bar fill */
 .progress-bar-fill {
     position: absolute;
     width: 100%;
-    background-color: #007bff; /* Change color to highlight */
+    background-color: #007bff;
     top: 0;
-    transition: height 1s ease-in-out;
-    z-index: 0; /* Add this line */
+    transition: height 2s ease-in-out;
+    z-index: 0; 
 }
 
-/* Progress bubbles */
 .progress-bubbles {
     list-style: none;
     padding: 0;
@@ -54,11 +59,9 @@
     gap: 20px;
     position: absolute;
     top: 0;
-    left: -5px; /* Adjust position for bubbles */
+    left: -5px;  
     z-index: 2;
-    transform: translateX(0); /* Move bubbles to the right */
 }
-
 
 .bubble {
     width: 15px;
@@ -83,12 +86,11 @@
 /* Order details container */
 .order-details {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 100%;
     margin-top: 20px;
 }
 
-/* Price container */
 .price-container {
     background-color: #f9f9f9;
     padding: 10px;
