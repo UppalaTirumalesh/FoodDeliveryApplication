@@ -190,7 +190,7 @@ goToShoppingButton.addEventListener("click", () => {
 
 history.pushState(null, null, location.href);
 window.onpopstate = () => {
-  window.location.href = "index.html";
+  window.location.href = "./index.html";
 };
 
 placeOrderButton.addEventListener("click", () => {
@@ -380,22 +380,14 @@ function getPaymentMethod() {
 
 function getOrderDetails() {
   let orderItems = cartItems.map((item) => ({
-    id: item.id,
-    price: item.price,
+    product: item.product,
+    image: item.image,
     quantity: item.quantity,
-    thumbnail: item.thumbnail,
-    description: item.description,
-    title: item.title,
+    price: item.price,
   }));
-
-  let totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
 
   return {
     orderItems,
-    totalPrice,
   };
 }
 
@@ -434,9 +426,7 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
   paymentMethodDetails.textContent = `Payment Method: ${paymentMethod}`;
 
   let orderItemsHeading = document.createElement("h4");
-  orderItemsHeading.textContent = "Order Items";
-
-  confirmationContainer.innerHTML = ""; // Clear previous content
+  orderItemsHeading.textContent = "Ordered Items";
 
   // Create an unordered list for displaying order items
   let orderItemsList = document.createElement("ul");
@@ -457,24 +447,19 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
     orderItemsList.appendChild(listItem);
   });
 
-  // Display sub total, tax, and grand total
-  const subTotal = parseFloat(orderDetails.totalPrice);
-  const taxRate = 0.05;
-  const tax = subTotal * taxRate;
-  const grandTotal = subTotal + tax;  
+  // Use the values in your page rendering
+  const subTotalValue = cartItems[cartItems.length - 1].subTotal;
+  const taxValue = cartItems[cartItems.length - 1].tax;
+  const grandTotalValue = cartItems[cartItems.length - 1].grandTotal;
 
   let subTotalElement = document.createElement("h4");
-  subTotalElement.textContent = `Sub Total: $${subTotal.toFixed(2)}`;
+  subTotalElement.textContent = `Sub Total: $${subTotalValue}`;
 
   let taxElement = document.createElement("h4");
-  taxElement.textContent = `Tax (5%): $${tax.toFixed(2)}`;
+  taxElement.textContent = `Tax (5%): $${taxValue}`;
 
   let grandTotalElement = document.createElement("h4");
-  grandTotalElement.textContent = `Grand Total: $${grandTotal.toFixed(2)}`;
-
-  orderSummaryContainer.appendChild(subTotalElement);
-  orderSummaryContainer.appendChild(taxElement);
-  orderSummaryContainer.appendChild(grandTotalElement);
+  grandTotalElement.textContent = `Grand Total: $${grandTotalValue}`;
 
   let editButton = document.createElement("button");
   editButton.classList.add("editButton");
@@ -484,9 +469,6 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
   placeOrder.classList.add("placeOrder");
   placeOrder.textContent = "Place Order";
 
-  let totalPrice = document.createElement("h4");
-  totalPrice.textContent = `Total Price: $${orderDetails.totalPrice}`;
-
   orderSummaryContainer.appendChild(orderSummaryHeading);
   orderSummaryContainer.appendChild(billingAddressHeading);
   orderSummaryContainer.appendChild(billingAddressDetails);
@@ -494,7 +476,9 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
   orderSummaryContainer.appendChild(paymentMethodDetails);
   orderSummaryContainer.appendChild(orderItemsHeading);
   orderSummaryContainer.appendChild(orderItemsList);
-  orderSummaryContainer.appendChild(totalPrice);
+  orderSummaryContainer.appendChild(subTotalElement);
+  orderSummaryContainer.appendChild(taxElement);
+  orderSummaryContainer.appendChild(grandTotalElement);
   orderSummaryContainer.appendChild(placeOrder);
   orderSummaryContainer.appendChild(editButton);
 
@@ -537,7 +521,7 @@ function showModal() {
   modal.style.display = "block";
   yesValue.addEventListener("click", () => {
     if (yesValue.checked) {
-      sessionStorage.removeItem("cartItems");
+      // sessionStorage.removeItem("cartItems");
       // confirmationContainer.style.display = 'none';
       placeOrder();
       closeModalFunction();

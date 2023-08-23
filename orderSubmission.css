@@ -74,10 +74,29 @@
 /* Order details container */
 .order-details {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     width: 100%;
     margin-top: 20px;
 }
+
+#goToShoppingButton {
+    width: auto;
+    height: 40px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 70px;
+    font-size: large;
+  }
+  
+  #goToShoppingButton:hover {
+    border: 1px solid rgb(62, 62, 165);
+    background-color: rgb(141, 141, 221);
+  }
 
 .price-container {
     background-color: #f9f9f9;

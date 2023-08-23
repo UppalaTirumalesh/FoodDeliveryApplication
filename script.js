@@ -9,11 +9,6 @@ orderButtons.forEach(button => {
     const price = event.currentTarget.getAttribute("data-price");
     const image = event.currentTarget.getAttribute("data-image");
 
-    // Make sure cartItems is an array
-    if (!Array.isArray(cartItems)) {
-      cartItems = [];
-    }
-
     // Add the selected product to cart items
     cartItems.push({ product, price, image, quantity: 1 });
 
