@@ -1,4 +1,5 @@
-let cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+let orderSummary = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+let cartItems = orderSummary.cartItems || [];
 let stateSelect = document.getElementById("states");
 let districtSelect = document.getElementById("districts");
 let goBackButton = document.getElementById("goBackButton");
@@ -30,12 +31,6 @@ let backButton = document.getElementsByClassName("backButton");
 let backButton3 = document.getElementById("backButton3");
 let yesValue = document.getElementById("yesValue");
 let noValue = document.getElementById("noValue");
-
-window.addEventListener("DOMContentLoaded", () => {
-  if (cartItems.length === 0) {
-    window.location.href = "index.html";
-  }
-});
 
 cashOnDelivery.addEventListener("click", () => {
   if (cashOnDelivery.checked) {
@@ -122,6 +117,8 @@ confirmButton3.addEventListener("click", () => {
 checkboxProgressBar.addEventListener("change", () => {
   if (checkboxProgressBar.checked) {
     placeOrderButton.style.display = "block";
+  } else {
+    placeOrderButton.style.display = "none";
   }
 });
 
@@ -174,10 +171,6 @@ creditCardAndDebitCard.addEventListener("click", () => {
   }
 });
 
-goBackButton.addEventListener("click", () => {
-  window.location.href = "cart.html";
-});
-
 closeModal.addEventListener("click", () => {
   closeModalFunction();
 });
@@ -187,11 +180,6 @@ goToShoppingButton.addEventListener("click", () => {
   closeModalFunction();
   window.location.href = "index.html";
 });
-
-history.pushState(null, null, location.href);
-window.onpopstate = () => {
-  window.location.href = "./index.html";
-};
 
 placeOrderButton.addEventListener("click", () => {
   if (validateForm()) {
@@ -428,12 +416,10 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
   let orderItemsHeading = document.createElement("h4");
   orderItemsHeading.textContent = "Ordered Items";
 
-  // Create an unordered list for displaying order items
   let orderItemsList = document.createElement("ul");
   orderItemsList.classList.add("order-items-list");
 
   cartItems.forEach((item) => {
-    // Create list items for each cart item
     let listItem = document.createElement("li");
     listItem.classList.add("order-item");
     listItem.innerHTML = `
@@ -447,10 +433,9 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
     orderItemsList.appendChild(listItem);
   });
 
-  // Use the values in your page rendering
-  const subTotalValue = cartItems[cartItems.length - 1].subTotal;
-  const taxValue = cartItems[cartItems.length - 1].tax;
-  const grandTotalValue = cartItems[cartItems.length - 1].grandTotal;
+  const subTotalValue = orderSummary.subTotal;
+  const taxValue = orderSummary.tax.toFixed(2);
+  const grandTotalValue = orderSummary.grandTotal;
 
   let subTotalElement = document.createElement("h4");
   subTotalElement.textContent = `Sub Total: $${subTotalValue}`;
@@ -484,7 +469,6 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
 
   placeOrder.addEventListener("click", () => {
     window.location.href = "./orderSubmission.html";
-    // showModal2();
     updateProgressBar(100);
   });
 
@@ -513,6 +497,12 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
   confirmationContainer.scrollIntoView({ behavior: "smooth" });
 }
 
+window.addEventListener("DOMContentLoaded", () => {
+  if (cartItems.length === 0) {
+    window.location.href = "index.html";
+  }
+});
+
 function updateProgressBar(percentage) {
   progress.style.width = `${percentage}%`;
 }
@@ -521,8 +511,6 @@ function showModal() {
   modal.style.display = "block";
   yesValue.addEventListener("click", () => {
     if (yesValue.checked) {
-      // sessionStorage.removeItem("cartItems");
-      // confirmationContainer.style.display = 'none';
       placeOrder();
       closeModalFunction();
       updateProgressBar(75);

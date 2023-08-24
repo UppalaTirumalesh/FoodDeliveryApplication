@@ -7,26 +7,26 @@ let taxValue = document.getElementById("taxValue");
 let grandTotalValue = document.getElementById("grandTotalValue");
 let goToShoppingButton = document.getElementById("goToShoppingButton");
 
-// Load price details from sessionStorage
 function loadPriceDetails() {
+  let orderSummary = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+  console.log(orderSummary);
+  let cartItems = orderSummary.cartItems || [];
 
-let cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
-
-// Use the values in your page rendering
-const subTotal = cartItems[cartItems.length - 1].subTotal;
-const tax = cartItems[cartItems.length - 1].tax;
-const grandTotal = cartItems[cartItems.length - 1].grandTotal;
+  const subTotal = orderSummary.subTotal;
+  const tax = orderSummary.tax.toFixed(2);
+  const grandTotal = orderSummary.grandTotal;
 
   subTotalValue.textContent = `$${subTotal}`;
   taxValue.textContent = `$${tax}`;
   grandTotalValue.textContent = `$${grandTotal}`;
 }
 
-
 function updateProgressBarAndBubbles(progressPercentage) {
   progressBarFill.style.height = `${progressPercentage}%`;
 
-  let numBubbles = Math.ceil(progressPercentage / (100 / progressBubbles.length));
+  let numBubbles = Math.ceil(
+    progressPercentage / (100 / progressBubbles.length)
+  );
   for (let i = 0; i < progressBubbles.length; i++) {
     if (i < numBubbles) {
       progressBubbles[i].classList.add("active");
@@ -50,7 +50,6 @@ function simulateOrderTracking() {
   }, intervalDuration);
 }
 
-// Run the simulation and load price details on page load
 window.addEventListener("DOMContentLoaded", () => {
   simulateOrderTracking();
   loadPriceDetails();

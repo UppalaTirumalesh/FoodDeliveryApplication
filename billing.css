@@ -12,20 +12,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.go-back-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  margin-top: 60px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
 .position-bar {
   display: flex;
   justify-content: space-between;
