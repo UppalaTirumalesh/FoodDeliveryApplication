@@ -7,11 +7,15 @@ let taxValue = document.getElementById("taxValue");
 let grandTotalValue = document.getElementById("grandTotalValue");
 let goToShoppingButton = document.getElementById("goToShoppingButton");
 
-function loadPriceDetails() {
-  let orderSummary = JSON.parse(sessionStorage.getItem("cartItems")) || [];
-  console.log(orderSummary);
-  let cartItems = orderSummary.cartItems || [];
+// window.addEventListener("DOMContentLoaded", () => {
+//   updateProgressBarAndBubbles();
+// });
 
+function loadPriceDetails() {
+  let orderSummary = JSON.parse(sessionStorage.getItem("orderSummary"));
+  console.log(orderSummary);
+  cartItems = orderSummary.cartItems;
+  
   const subTotal = orderSummary.subTotal;
   const tax = orderSummary.tax.toFixed(2);
   const grandTotal = orderSummary.grandTotal;
@@ -36,7 +40,7 @@ function updateProgressBarAndBubbles(progressPercentage) {
   }
 }
 
-function simulateOrderTracking() {
+function orderTracking() {
   let numSteps = progressSteps.children.length;
   let intervalDuration = 3000;
   let progress = 0;
@@ -51,7 +55,7 @@ function simulateOrderTracking() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  simulateOrderTracking();
+  orderTracking();
   loadPriceDetails();
 });
 

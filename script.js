@@ -1,12 +1,12 @@
 let cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 
-if (!Array.isArray(cartItems)) {
-  cartItems = [];
-}
+// if (!Array.isArray(cartItems)) {
+//   cartItems = [];
+// }
 
 const orderButtons = document.querySelectorAll(".orderbutton");
-orderButtons.forEach(button => {
-  button.addEventListener("click", function(event) {
+orderButtons.forEach((button) => {
+  button.addEventListener("click", function (event) {
     const product = event.currentTarget.getAttribute("data-product");
     const price = event.currentTarget.getAttribute("data-price");
     const image = event.currentTarget.getAttribute("data-image");

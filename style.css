@@ -1,14 +1,7 @@
 * {
-    box-sizing: border-box;
+    margin: 0px;
     padding: 0px;
-}
-
-body {
-    margin: 0 auto;
-}
-
-hr {
-    margin: 0;
+    box-sizing: border-box;
 }
 
 .nav-container {
@@ -35,7 +28,10 @@ hr {
     cursor: pointer;
 }
 
-.list li:hover, .contact:hover, button.fields:hover { 
+.list li:hover,
+.contact:hover,
+button.fields:hover,
+.searchButton:hover {
     border: 1px solid rgb(62, 62, 165);
     background-color: rgb(141, 141, 221);
 }
@@ -77,12 +73,21 @@ hr {
     font-size: 17px;
 }
 
-.searchButton { 
+.searchButton {
     width: 100px;
     border-radius: 0 15px 15px 0;
     font-size: 17px;
     border-left: none;
     cursor: pointer;
+}
+
+#searchImage {
+    width: 12px;
+    height: 12px;
+}
+
+.searchButton span {
+    padding-left: 5px;
 }
 
 .list-items {
@@ -120,12 +125,18 @@ hr {
     cursor: pointer;
 }
 
-button.fields, .view, .order {
-background-color: #007bff;
-border: 1px solid #007bff;
-color: white;
-border-radius: 5px;
-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+button.fields,
+.view,
+.order {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.order {
+    margin-top: 30px;
 }
 
 .head2 {
@@ -174,7 +185,6 @@ box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 .price {
     text-align: center;
-    margin: 0;
 }
 
 .view-button {
@@ -243,7 +253,7 @@ img {
 .footermaincontainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 0 80px;
+    padding: 20px 80px;
 }
 
 .footer-items {
@@ -266,76 +276,86 @@ img {
     padding: 0 10px 0 0;
 }
 
-/* Responsive design for smaller screens */
 @media (max-width: 768px) {
     .nav-container {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 40px;
     }
-  
+
     .list {
-      margin: 10px 0;
+        display: inherit;
+        margin: 10px 0;
     }
-  
+
+    .restaurent-title {
+        margin: 25px 0 0 0;
+    }
+
     .contact {
-      margin: 15px 0;
+        margin: 50px 0;
     }
-  
+
     .searchBar {
-      width: 100%;
-      margin-bottom: 10px;
+        width: 100%;
+        margin-bottom: 10px;
     }
-  
+
     .searchButton {
         height: 44px;
     }
-  
+
     .input-fields {
-      flex-direction: column;
-      padding: 20px;
+        flex-direction: column;
+        padding: 20px;
     }
-  
+
     .fields {
-      width: 100%;
+        width: 100%;
     }
-  
+
     .box {
-      width: 100%;
-      margin-bottom: 20px;
+        width: 100%;
+        margin-bottom: 20px;
     }
-  
+
     .orderbutton {
-      margin: 10px 0;
+        margin: 10px 0;
     }
-  
+
     .offer {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
-  
+
     .offer-image img {
-      width: 100%;
-      height: auto;
-      padding-left: 0;
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
     }
-  
+
     .footermaincontainer {
-      grid-template-columns: 1fr;
-      padding: 0;
+        grid-template-columns: 1fr;
+        padding: 20px 50px;
     }
-  
+
     .text-start {
-      flex-direction: column;
-      align-items: center;
-      padding: 10px;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
     }
-  }
-  
+
+    .price {
+        display: flex;
+        margin-left: 50px;
+    }
+}
+
 @media (max-width: 576px) {
     .grid-container {
-      grid-template-columns: repeat(1, 1fr);
-      width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
     }
 
     .nav-container {
@@ -343,24 +363,45 @@ img {
         flex-direction: column;
         align-items: center;
         text-align: center;
-      }
-  }
-  
-  @media (min-width: 577px) and (max-width: 991px) {
-    .grid-container {
-      grid-template-columns: repeat(2, 1fr);
-      width: 90%;
-      margin: 0 auto;
     }
-  }
-  
-  @media (min-width: 992px) and (max-width: 1200px) {
-    .grid-container {
-      grid-template-columns: repeat(3, 1fr);
-      width: 80%;
-      margin: 0 auto;
+
+    .list {
+        display: grid;
+        margin: 10px 0;
     }
-  }
-  
-  
-  
+
+    .restaurent-title {
+        margin: 5px 0 0 0;
+        ;
+    }
+
+    .price {
+        display: flex;
+        margin-left: 50px;
+    }
+
+    .contact {
+        margin: 170px 0 0 0;
+    }
+
+    .view-button {
+        text-align: center;
+        margin: 0 0 20px 0;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+        width: 80%;
+        margin: 0 auto;
+    }
+}

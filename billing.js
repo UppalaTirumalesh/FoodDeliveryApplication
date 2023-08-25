@@ -1,14 +1,12 @@
-let orderSummary = JSON.parse(sessionStorage.getItem("cartItems")) || [];
-let cartItems = orderSummary.cartItems || [];
+let orderSummary = JSON.parse(sessionStorage.getItem("orderSummary"));
+let cartItems = orderSummary.cartItems;
 let stateSelect = document.getElementById("states");
 let districtSelect = document.getElementById("districts");
 let goBackButton = document.getElementById("goBackButton");
 let modal = document.getElementById("modal");
 let modal2 = document.getElementById("modal2");
 let closeModal = document.getElementsByClassName("close")[0];
-let closeModal2 = document.getElementsByClassName("close2")[0];
 let goToShoppingButton = document.getElementById("goToShoppingButton");
-let goToShoppingButton2 = document.getElementById("goToShoppingButton2");
 let placeOrderButton = document.getElementById("placeOrderButton");
 let creditCardAndDebitCard = document.getElementById("creditCardAndDebitCard");
 let paymentCards = document.getElementById("paymentCards");
@@ -171,6 +169,10 @@ creditCardAndDebitCard.addEventListener("click", () => {
   }
 });
 
+goBackButton.addEventListener("click", () => {
+  window.location.href = "./cart.html";
+});
+
 closeModal.addEventListener("click", () => {
   closeModalFunction();
 });
@@ -315,11 +317,7 @@ function validateForm2() {
 function placeOrder() {
   let billingAddress = getBillingAddress();
   let paymentMethod = getPaymentMethod();
-  let orderDetails = getOrderDetails();
-
-  sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
-
-  displayOrderSummary(orderDetails, billingAddress, paymentMethod);
+  displayOrderSummary(billingAddress, paymentMethod);
 }
 
 function getBillingAddress() {
@@ -366,20 +364,7 @@ function getPaymentMethod() {
   return paymentMethod;
 }
 
-function getOrderDetails() {
-  let orderItems = cartItems.map((item) => ({
-    product: item.product,
-    image: item.image,
-    quantity: item.quantity,
-    price: item.price,
-  }));
-
-  return {
-    orderItems,
-  };
-}
-
-function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
+function displayOrderSummary(billingAddress, paymentMethod) {
   orderConfirmationPageContainer.style.display = "none";
 
   let elements = document.getElementsByClassName("order-summary-container");
@@ -397,21 +382,21 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
   billingAddressHeading.textContent = "Billing Address";
 
   let billingAddressDetails = document.createElement("p");
-  billingAddressDetails.textContent = `First Name: ${billingAddress.firstName}
-    Last Name: ${billingAddress.lastName}
-    Mobile Number: ${billingAddress.mobileNumber}
-    Alternate Mobile Number: ${billingAddress.alternateMobileNumber}
-    Email: ${billingAddress.email}
-    Address: ${billingAddress.address}
-    Pincode: ${billingAddress.pincode}
-    State: ${billingAddress.state}
-    District: ${billingAddress.district}`;
+  billingAddressDetails.innerHTML = `First Name : ${billingAddress.firstName}<br>
+    Last Name : ${billingAddress.lastName}<br>
+    Mobile Number : ${billingAddress.mobileNumber}<br>
+    Alternate Mobile Number  : ${billingAddress.alternateMobileNumber}<br>
+    Email Id : ${billingAddress.email}<br>
+    Address : ${billingAddress.address}<br>
+    Pincode : ${billingAddress.pincode}<br>
+    State : ${billingAddress.state}<br>
+    District : ${billingAddress.district}`;
 
   let paymentMethodHeading = document.createElement("h4");
   paymentMethodHeading.textContent = "Payment Method";
 
   let paymentMethodDetails = document.createElement("p");
-  paymentMethodDetails.textContent = `Payment Method: ${paymentMethod}`;
+  paymentMethodDetails.textContent = `Payment Method : ${paymentMethod}`;
 
   let orderItemsHeading = document.createElement("h4");
   orderItemsHeading.textContent = "Ordered Items";
@@ -468,7 +453,7 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
   orderSummaryContainer.appendChild(editButton);
 
   placeOrder.addEventListener("click", () => {
-    window.location.href = "./orderSubmission.html";
+    window.location.href = "./orderTracking.html";
     updateProgressBar(100);
   });
 
@@ -477,16 +462,6 @@ function displayOrderSummary(orderDetails, billingAddress, paymentMethod) {
     confirmationContainer.style.display = "none";
     orderSummaryContainer.style.display = "none";
     updateProgressBar(0);
-  });
-
-  closeModal2.addEventListener("click", () => {
-    modal2.style.display = "none";
-  });
-
-  goToShoppingButton2.addEventListener("click", () => {
-    sessionStorage.removeItem("cartItems");
-    modal2.style.display = "none";
-    window.location.href = "./index.html";
   });
 
   confirmationContainer.style.display = "block";

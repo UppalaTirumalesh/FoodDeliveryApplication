@@ -4,14 +4,21 @@ const taxValue = document.getElementById("taxValue");
 const grandTotalValue = document.getElementById("grandTotalValue");
 const checkoutButton = document.getElementById("checkoutButton");
 const goBackButton = document.getElementById("goBackButton");
-let cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+let cartItems = JSON.parse(sessionStorage.getItem("cartItems"));
+
+window.addEventListener("DOMContentLoaded", () => {
+  if (cartItems.length === 0) {
+    window.location.href = "./index.html";
+  }
+  renderCartItems();
+});
+
+goBackButton.addEventListener("click", () => {
+  window.location.href = "./index.html";
+});
 
 function renderCartItems() {
   cartContainer.innerHTML = "";
-
-  if (!Array.isArray(cartItems)) {
-    cartItems = [];
-  }
 
   if (cartItems.length === 0) {
     cartContainer.innerHTML = '<h1 class="no-data">Your cart is empty</h1>';
@@ -129,22 +136,13 @@ function removeFromCart(product) {
   cartItems = cartItems.filter((item) => item.product !== product.product);
   sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
   renderCartItems();
+  calculateCartTotal();
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  renderCartItems();
-
-  goBackButton.addEventListener("click", () => {
-    window.location.href = "./index.html";
-  });
-
-  checkoutButton.addEventListener("click", () => {
-    const { subTotal, tax, grandTotal } = calculateCartTotal();
-    const cartSummary = { subTotal, tax, grandTotal };
-    const orderSummary = { ...cartSummary, cartItems: [...cartItems] };
-    sessionStorage.setItem("cartItems", JSON.stringify(orderSummary));
-    console.log(cartItems);
-    window.location.href = "./billing.html";
-  });
-  
+checkoutButton.addEventListener("click", () => {
+  const { subTotal, tax, grandTotal } = calculateCartTotal();
+  const cartSummary = { subTotal, tax, grandTotal };
+  const orderSummary = { ...cartSummary, cartItems: [...cartItems] };
+  sessionStorage.setItem("orderSummary", JSON.stringify(orderSummary));
+  window.location.href = "./billing.html";
 });
